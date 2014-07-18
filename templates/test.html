@@ -1,29 +1,36 @@
-{% extends "base.html" %}
+ {% extends "base.html" %}
 
-{% block content %}
+ {% block content %}
+ <div class="row">
+  <div class="medium-2 columns"><p></div>
 
-<div class="row">
 
-<div class="large-12 columns">
-<select id="selectField-bloomberg">
-          <option value="bloomberg1">Stock Markets</option>
+  <div class="medium-10 columns"></div>
+
+<!-- Bloomberg box -->
+
+        <div class="large-8 columns">
+          <div id="bloomberg" class="panel callout">
+
+          <div class="logos">
+          <a href="//www.bloomberg.com/markets"><img class="logos" src="static/img/bloomberg_logo.png"></a>
+          <p class="bloomberg-caption">Market data for the world's stock, futures and currency markets
+
+          </div>
+          <select id="selectField-bloomberg">
+          <option value="bloomberg1">Stocks</option>
           <option value="bloomberg2">Futures</option>
           <option value="bloomberg3">Currencies</option>
 
            </select>
 
-          <div id="bloomberg" class="panel callout">
+ <!-- Stocks -->
 
-<!-- Market box -->
-
-
-<!-- Stocks -->
-
-        <div id="bloomberg1" class="bloomberg">
+          <div id="bloomberg1" class="bloomberg">
         <div id="bloomberg" class="panel callout content">
         <table align=center>
         {% for markets in stock_markets %}
-          
+          <tr>
           {% if '+' in markets[2] %}
           <td id="pos" class="quotes">
           {% else %}
@@ -36,7 +43,7 @@
           <span class="bloomtext" id="neg-change">(<b>{{ markets[2] }}</b>)</span></p>
           {% endif %}
           </td>
-          
+          </tr>
         {% endfor %}
         </table>
         </div>
@@ -49,7 +56,7 @@
             <table align=center>
 
           <tr>
-          {% for markets in futures[0:] %}
+          {% for markets in futures[0:2] %}
          {% if '+' in markets[2] %}
           <td id="pos" class="small-quotes">
           {% else %}
@@ -60,6 +67,41 @@
           <span class="bloomtext" id="pos-change">(<b>{{ markets[2] }}</b>)</span></p>
           {% else %}
           <span class="bloomtext" id="neg-change">(<b>{{ markets[2] }}</b>)</span></p>
+          {% endif %}
+          </td>
+          {% endfor %}
+          </tr>
+
+
+          <tr>
+          {% for markets in futures[2:4] %}
+          {% if '+' in markets[2] %}
+          <td id="pos" class="small-quotes">
+          {% else %}
+          <td id="neg" class="small-quotes">
+          {% endif %}
+           <span class="bloomtext" id="index"><b>{{ markets[0] }}</b></span><br /><br /><span class="bloomtext" id="value" >{{ markets[1] }}</span><br />
+          {% if '+' in markets[2] %}
+          <span class="bloomtext" id="pos-change">(<b>{{ markets[2] }}</b>)</span></p>
+          {% else %}
+          <span class="bloomtext" id="neg-change">(<b>{{ markets[2] }}</b>)</span></p>
+          {% endif %}
+          </td>
+          {% endfor %}
+          </tr>
+
+          <tr>
+          {% for markets in futures[5:7] %}
+          {% if '+' in markets[2] %}
+          <td id="pos" class="small-quotes">
+          {% else %}
+          <td id="neg" class="small-quotes">
+          {% endif %}
+           <span class="bloomtext" id="index"><b>{{ markets[0] }}</b></span><br /><br /><span class="bloomtext" id="value" >{{ markets[1] }}</span><br />
+         {% if '+' in markets[2] %}
+          <span class="bloomtext" id="pos-change">(<b>{{ markets[2] }}</b></span>)</p>
+          {% else %}
+          <span class="bloomtext" id="neg-change">(<b>{{ markets[2] }}</b></span>)</p>
           {% endif %}
           </td>
           {% endfor %}
@@ -78,7 +120,7 @@
 
           <table align=center>
           <tr>
-          {% for markets in currencies[0:5] %}
+          {% for markets in currencies[0:3] %}
           {% if '+' in markets[2] %}
           <td id="pos" class="small-quotes">
           {% else %}
@@ -95,7 +137,24 @@
           </tr>
 
           <tr>
-          {% for markets in currencies[5:10] %}
+          {% for markets in currencies[4:7] %}
+          {% if '+' in markets[2] %}
+          <td id="pos" class="small-quotes">
+          {% else %}
+          <td id="neg" class="small-quotes">
+          {% endif %}
+           <span class="bloomtext" id="index"><b>{{ markets[0] }}</b></span><br /><br /><span class="bloomtext" id="value" >{{ markets[1] }}</span><br />
+           {% if '+' in markets[2] %}
+          <span class="bloomtext" id="pos-change">(<b>{{ markets[2] }}</b>)</span></p>
+          {% else %}
+          <span class="bloomtext" id="neg-change">(<b>{{ markets[2] }}</b>)</span></p>
+          {% endif %}
+          </td>
+          {% endfor %}
+          </tr>
+
+          <tr>
+          {% for markets in currencies[7:10] %}
           {% if '+' in markets[2] %}
           <td id="pos" class="small-quotes">
           {% else %}
@@ -113,68 +172,22 @@
 
 
         </table>
+        </div>
+          </div>
 
+        </div>
+<p></p>
+        </div>
+
+
+  <div class="medium-2 columns"></div>
+    </div>
 
 
         </div>
+
+      </div>
+
+
         </div>
-
-
-
-</div>
-
-<!-- Screened stocks -->
-
-<select id="selectField-stocks">
-          <option value="stocks1">Income Stocks</option>
-          <option value="stocks2">Growth Stocks</option>
-          <option value="stocks3">Other</option>
-
-           </select>
-
-<div id="stocks1" class="stocks">
-<div id="stocks" class="panel callout">
-
- <h3 align=center>Income Stocks</h3>
- <p align=center><em>Sorted by dividend yield</em></p>
-<table align=center>
-<tr>
-    <td>
-        Company
-    </td>
-    <td>
-        Ticker
-    </td>
-    <td>
-        Industry
-    </td>
-    <td>
-        Price
-    </td>
-    <td>
-        Change
-    </td>
-    <td>
-        Dividend
-    </td>
-</tr>
-
-{% for item in range(20) %}
-<tr>
-    <td><a href="{{ income_stocks(item)['ticker_link']|safe }}" target="_blank">{{ income_stocks(item)['company'] }}</a></td>
-    <td>{{ income_stocks(item)['ticker_link/_text']}}
-    <td>{{ income_stocks(item)['industry'] }}</td>
-    <td>{{ income_stocks(item)['price_number'] }}</td>
-    {% if income_stocks(item)['change'] >= 0.0 %}
-    <td class="up">{{ income_stocks(item)['change'] }}</td>
-    {% else %}
-    <td class="down">{{ income_stocks(item)['change'] }}</td>
-    {% endif %}
-    <td>{{ income_stocks(item)['dividend'] }}</td>
-</tr>
-{% endfor %}
-</table>
-</div>
-</div>
-
 {% endblock %}

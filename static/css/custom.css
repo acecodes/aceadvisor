@@ -14,7 +14,22 @@ body { font-family: Reddit; src: url('/static/fonts/RockoFLF.ttf');}
   border:1px #1AA6FF solid;
 }
 
-.top-bar#sub { background-color:#243C83; text-align:center; margin-top:0px; height:30px; color:gray; padding-bottom:30px;}
+table { border:0;}
+
+.top-bar {background-color:#287E32;}
+
+  .top-bar .name {
+    text-align:center;
+    height: 45px;
+    margin-top: 1em;
+    font-size: 16px; }
+    .top-bar .name h1 {
+      font-family:Money;
+      line-height: 45px;
+      font-size: 3.2625rem;
+      margin: 0; }
+
+.top-bar#sub { background-color:#59A128; text-align:center; margin-top:0px; height:30px; color:gray; padding-bottom:30px;}
 
 .top-bar#sub a { color:white; }
 
@@ -25,36 +40,11 @@ h2.site { text-align:left; text-align:center;}
 img.logos {display:block; margin:auto;}
 p.huge {font-size:8.5em; text-align:center; font-family:arial; margin:0; padding:0;}
 
-p.huge#cuteness {font-family:Reddit; color:#2872C2;}
-.panel.callout p.money {color:#4D8F21; font-family:Money; font-size:2.5em; text-align:center;}
-.panel.callout p.cuteness {font-family:Reddit; font-size:2.5em; text-align:center;}
-.panel.callout#intro {background:#9ADF20; border-color:#9FDA07;}
-
-/* Reddit styles */
-.reddit-text {font-family:Reddit;}
-.reddit-text#header {text-align:center;}
-.reddit-text#subs {font-size:1.2em; color:#2872C2;}
-.reddit-text#numbers {font-size:0.9em;}
-.reddit-text#cuteness-announce {font-size:0.7em; color:#2872C2;}
-.reddit-text#cuteness-level {font-size:1.2em; color:#DD2E2E;}
-#reddit {background:#ecfaff; border-color:#b6edff;}
-.panel.callout.content#reddit {background:#ecfaff; border-color:#b6edff;}
-
-/* TechCrunch styles */
-#techcrunch {background:#E4F8D4; border-color:#9FDA07;}
-p.huge#techcrunch {color:#4D8F21; font-family: Reddit; text-align:center;}
-.tctext {font-family:Reddit;}
-.tctext#disruption-announce {font-size:0.7em; color:#000000;}
-.tctext#disruption-level {font-size:1.2em; color:#4D8F21;}
-.tctext#writers {font-size:1.2em; color:#4D8F21;}
-.tctext#numbers {font-size:0.9em; color:#000000;}
-.panel.callout.content#techcrunch {background:#E4F8D4; border-color:#9FDA07;}
-.panel.callout#techcrunch a:not(.button) {
-      color:#4D8F21;} 
 
 /* Bloomberg styles */
 
 #bloomberg {background:#FFFFFF;border-color:#DAD4D3;}
+.panel.callout#bloomberg {padding:0em; margin:0em;}
 .panel.callout.content#bloomberg {background:#FFFFFF;border-color:#FFFFFF;}
 .bloomberg-caption {text-align:center; padding-top:0.7em;}
 .bloomtext {font-family:Reddit;}
@@ -63,11 +53,19 @@ p.huge#techcrunch {color:#4D8F21; font-family: Reddit; text-align:center;}
 .bloomtext#pos-change {color:#409610;}
 .bloomtext#neg-change {color:#BB0606;}
 
+/* Stock screener styles */
+
+select#selectField-stocks {margin-top:1em;}
+#stocks {background:#FFFFFF;border-color:#DAD4D3;}
+.up {background-color:#59A128; color:white; text-align:center;}
+.down {background-color:red; color:white; text-align:center;}
+
+
 /* Quote boxes */
 
 .quotes {
   margin: 0 auto;
-  width: 100%;
+  width: 10%;
   padding: 40px 20px 0px 20px;
   text-align: center;
 }

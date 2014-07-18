@@ -68,11 +68,7 @@ def info():
 
 @app.route('/')
 def index():
-	return render_template('index.html')
-
-@app.route('/income')
-def income_screener():
-	return render_template('income.html')
+	return render_template('index.html', stock_markets=BMScraper.pull_data('stock_markets'), futures=BMScraper.pull_data('futures'), currencies=BMScraper.pull_data('currencies'))
 
 if __name__ == '__main__':
 	app.run(debug=True, port=8001)
