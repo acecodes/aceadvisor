@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row">
+<div class="medium-10 columns"></div>
+
+<h3>Income Stocks</h3>
+<table>
+<tr>
+    <td>
+        Company
+    </td>
+    <td>
+        Ticker
+    </td>
+    <td >
+        Sector
+    </td>
+    <td>
+        Industry
+    </td>
+    <td>
+        Price
+    </td>
+    <td>
+        Price Change
+    </td>
+</tr>
+
+{% for item in range(20) %}
+<tr>
+	<td><a href="{{ income_stocks(item)['ticker_link']|safe }}">{{ income_stocks(item)['company'] }}</a></td>
+	<td>{{ income_stocks(item)['ticker_link/_text']}}
+	<td>{{ income_stocks(item)['sector'] }}</td>
+	<td>{{ income_stocks(item)['industry'] }}</td>
+	<td>{{ income_stocks(item)['price_number']}}</td>
+	{% if income_stocks(item)['change_number'] <= 0.0 %}
+	<td class='down'>{{ income_stocks(item)['change_number'] }}</td>
+	{% else %}
+	<td class='up'>{{ income_stocks(item)['change_number'] }}</td>
+	{% endif %}
+</tr>
+{% endfor %}
+</table>
+  <div class="medium-2 columns"></div>
+</div>
+
+{% endblock %}
