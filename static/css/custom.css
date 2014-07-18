@@ -5,7 +5,7 @@
 @font-face { font-family: Reddit; src: url('/static/fonts/RockoFLF.ttf');}
 
 body { font-family: Reddit; src: url('/static/fonts/RockoFLF.ttf');}
-
+h1 { font-family: Reddit; src: url('/static/fonts/RockoFLF.ttf'); }
 .thumbs img {
 
   height:70px;
@@ -14,7 +14,9 @@ body { font-family: Reddit; src: url('/static/fonts/RockoFLF.ttf');}
   border:1px #1AA6FF solid;
 }
 
-table { border:0;}
+.section-header { text-align:center;}
+
+table { border:0; text-align:center;}
 
 .top-bar {background-color:#287E32;}
 
@@ -29,9 +31,8 @@ table { border:0;}
       font-size: 3.2625rem;
       margin: 0; }
 
-.top-bar#sub { background-color:#59A128; text-align:center; margin-top:0px; height:30px; color:gray; padding-bottom:30px;}
+.top-bar#sub { background-color:#59A128; text-align:center; margin-top:0px; height:40px; color:white; padding-bottom:30px;}
 
-.top-bar#sub a { color:white; }
 
 p.tagline {background-color:#162241; font-family:Arial; color:#ffffff; font-size:13px;}
 
@@ -55,10 +56,9 @@ p.huge {font-size:8.5em; text-align:center; font-family:arial; margin:0; padding
 
 /* Stock screener styles */
 
-select#selectField-stocks {margin-top:1em;}
 #stocks {background:#FFFFFF;border-color:#DAD4D3;}
-.up {background-color:#59A128; color:white; text-align:center;}
-.down {background-color:red; color:white; text-align:center;}
+.up {background-color:#59A128; color:white;}
+.down {background-color:red; color:white;}
 
 
 /* Quote boxes */

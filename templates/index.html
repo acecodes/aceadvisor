@@ -5,12 +5,32 @@
 <div class="row">
 
 <div class="large-12 columns">
+
+<div class="section-header">
+<h1>Headlines</h1>
+<p><em>This section is currently under construction</em></p>
+</div>
+<div class="panel callout"
+
+{% for items in headlines %}
+<p>{{ items|safe }}</p>
+{% endfor %}
+
+</div>
+
+<div class="section-header">
+<h1>Markets</h1>
+<p><em>Stocks, currencies and futures (commodities coming soon)</em></p>
+</div>
+
 <select id="selectField-bloomberg">
           <option value="bloomberg1">Stock Markets</option>
           <option value="bloomberg2">Futures</option>
           <option value="bloomberg3">Currencies</option>
 
            </select>
+
+
 
           <div id="bloomberg" class="panel callout">
 
@@ -140,15 +160,18 @@
 
 
 </div>
+<br />
+<div class="section-header">
+<h1>Stocks</h1>
+<p><em>Click company name to see more information</em></p>
+</div>
 
 <!-- Screened stocks -->
 
 <select id="selectField-stocks">
           <option value="stocks1">Income Stocks</option>
           <option value="stocks2">Growth Stocks</option>
-          <option value="stocks3">Other</option>
-
-           </select>
+       </select>
 
 <div id="stocks1" class="stocks">
 <div id="stocks" class="panel callout">
@@ -190,6 +213,53 @@
     <td class="down">{{ income_stocks(item)['change'] }}</td>
     {% endif %}
     <td>{{ income_stocks(item)['dividend'] }}</td>
+</tr>
+{% endif %}
+{% endfor %}
+</table>
+</div>
+</div>
+
+<div id="stocks2" class="stocks">
+<div id="stocks" class="panel callout">
+
+ <h3 align=center>Growth Stocks</h3>
+ <p align=center><em>Sorted by P/E</em></p>
+<table align=center>
+<tr>
+    <td>
+        Company
+    </td>
+    <td>
+        Ticker
+    </td>
+    <td>
+        Industry
+    </td>
+    <td>
+        Price
+    </td>
+    <td>
+        Change
+    </td>
+    <td>
+        P/E
+    </td>
+</tr>
+
+{% for item in range(20) %}
+{% if growth_stocks(item)['price_number'] %}
+<tr>
+    <td><a href="{{ growth_stocks(item)['ticker_link']|safe }}" target="_blank">{{ growth_stocks(item)['company'] }}</a></td>
+    <td>{{ growth_stocks(item)['ticker_link/_text']}}
+    <td>{{ growth_stocks(item)['industry'] }}</td>
+    <td>{{ growth_stocks(item)['price_number'] }}</td>
+    {% if growth_stocks(item)['change'] >= 0.0 %}
+    <td class="up">{{ growth_stocks(item)['change'] }}</td>
+    {% else %}
+    <td class="down">{{ growth_stocks(item)['change'] }}</td>
+    {% endif %}
+    <td>{{ growth_stocks(item)['pe_number'] }}</td>
 </tr>
 {% endif %}
 {% endfor %}

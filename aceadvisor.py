@@ -6,7 +6,8 @@ from flask import Flask, render_template
 import time
 
 # Individual scraper modules
-import income
+import scrapers.income as income
+import scrapers.growth as growth
 
 title = 'AceAdvisor'
 year = time.strftime("%Y")
@@ -56,11 +57,23 @@ class BloombergMarkets(ScrapeSite):
 		else:
 			return stock_markets, currencies, futures
 
+## Bloomberg News 
+
+class BloombergNews(ScrapeSite):
+
+	def __init__(self):
+		ScrapeSite.__init__(self, 'http://www.bloomberg.com/news/stocks/')
+
+	def scrape_news(self):
+		headlines = self.soup.find_all('a', {"class":"q story_link black"})
+		return headlines
+
+BMNews = BloombergNews()
 BMScraper = BloombergMarkets()
 
 @app.context_processor
-def screeners():
-	return {'income_stocks':income.stocks}
+def scrapers():
+	return {'income_stocks':income.stocks, 'growth_stocks':growth.stocks, 'headlines':BMNews.scrape_news()}
 
 @app.context_processor
 def info():

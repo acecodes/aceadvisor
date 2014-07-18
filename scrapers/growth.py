@@ -1,8 +1,15 @@
-import logging, json, importio, latch, config
+import logging, json, importio, latch, os
+
+try:
+  from scrapers.config import user_id as user_id 
+  from scrapers.config import api_key as api_key
+except ImportError:
+  user_id = os.environ['user_id']
+  api_key = os.environ['api_key']
+
 from random import randint
 
-client = importio.importio(user_id=config.user_id, api_key=config.api_key, host="https://query.import.io")
-
+client = importio.importio(user_id=user_id, api_key=api_key, host="https://query.import.io")
 
 # Once we have started the client and authenticated, we need to connect it to the server:
 client.connect()
@@ -48,10 +55,10 @@ def callback(query, message):
 # Query for tile Finviz - Income
 client.query({
   "connectorGuids": [
-    "38e2b0d0-e417-45f5-b651-bc0f5eb43e1a"
+    "a952b9e3-1f3e-4bf7-b2eb-209829ae52f4"
   ],
   "input": {
-    "webpage/url": "http://finviz.com/screener.ashx?v=152&f=an_recom_buybetter,fa_div_high,sh_avgvol_o500,sh_price_o10&ft=4&o=-dividendyield&c=0,1,2,3,4,5,6,7,14,65,66,67"
+    "webpage/url": "http://finviz.com/screener.ashx?v=151&f=fa_eps5years_pos,fa_estltgrowth_high,fa_pe_profitable,sh_avgvol_o500,sh_price_o10&ft=4&o=pe"
   }
 }, callback)
 

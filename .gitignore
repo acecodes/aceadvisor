@@ -2,3 +2,5 @@
 config.py
 *.pyc
 /__pycache__/
+*test*.py
+*test*.html
