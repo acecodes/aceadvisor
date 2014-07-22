@@ -65,8 +65,13 @@ class BloombergNews(ScrapeSite):
 		ScrapeSite.__init__(self, 'http://www.bloomberg.com/news/stocks/')
 
 	def scrape_news(self):
-		headlines = self.soup.find_all('a', {"class":"q story_link black"})
-		return headlines
+		headlines = list(self.soup.find_all('a', {"class":"q story_link black"}))
+		fixed_headlines = []
+		for items in headlines:
+			link_fix = str(items).replace('href="/news','href="http://www.bloomberg.com/news')
+			fixed_headlines.append(link_fix)
+
+		return fixed_headlines
 
 BMNews = BloombergNews()
 BMScraper = BloombergMarkets()
