@@ -254,7 +254,7 @@
     <td>{{ growth_stocks(item)['ticker_link/_text']}}
     <td>{{ growth_stocks(item)['industry'] }}</td>
     <td>{{ growth_stocks(item)['price_number'] }}</td>
-    {% if growth_stocks(item)['change'] >= 0.0 %}
+    {% if growth_stocks(item)['change_number'] >= 0.0 %}
     <td class="up">{{ growth_stocks(item)['change'] }}</td>
     {% else %}
     <td class="down">{{ growth_stocks(item)['change'] }}</td>
