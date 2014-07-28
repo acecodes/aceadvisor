@@ -58,7 +58,7 @@ p.huge {font-size:8.5em; text-align:center; font-family:arial; margin:0; padding
 
 #stocks {background:#FFFFFF;border-color:#DAD4D3;}
 .up {background-color:#59A128; color:white;}
-.down {background-color:red; color:white;}
+.down {background-color:#CC0000; color:white;}
 
 
 /* Quote boxes */
