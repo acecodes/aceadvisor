@@ -67,7 +67,7 @@ queryLatch.await()
 client.disconnect()
 
 
-def stocks(number, random=False):
+def growth(number, random=False):
   if random == True:
     number = randint(0, 20)
   company_original = dataRows[number]

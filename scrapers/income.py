@@ -63,12 +63,34 @@ client.query({
   }
 }, callback)
 
+
+client.query({
+  "connectorGuids": [
+    "a952b9e3-1f3e-4bf7-b2eb-209829ae52f4"
+  ],
+  "input": {
+    "webpage/url": "http://finviz.com/screener.ashx?v=151&f=fa_eps5years_pos,fa_estltgrowth_high,fa_pe_profitable,sh_avgvol_o500,sh_price_o10&ft=4&o=pe"
+  }
+}, callback)
+
 queryLatch.await()
 
 client.disconnect()
 
 
-def stocks(number, random=False):
+def growth(number, random=False):
+  if random == True:
+    number = randint(0, 20)
+  company_original = dataRows[number]
+  keys = company_original.keys()
+  values = company_original.values()
+
+  company = dict(zip(keys, values))
+
+  return company
+
+
+def income(number, random=False):
   if random == True:
     number = randint(0, 20)
   company_original = dataRows[number]

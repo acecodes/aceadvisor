@@ -179,43 +179,11 @@
  <h3 align=center>Income Stocks</h3>
  <p align=center><em>Sorted by dividend yield</em></p>
 <table align=center>
-<tr>
-    <td>
-        Company
-    </td>
-    <td>
-        Ticker
-    </td>
-    <td>
-        Industry
-    </td>
-    <td>
-        Price
-    </td>
-    <td>
-        Change
-    </td>
-    <td>
-        Dividend
-    </td>
-</tr>
 
-{% for item in range(20) %}
-{% if income_stocks(item)['price_number'] %}
-<tr>
-    <td><a href="{{ income_stocks(item)['ticker_link']|safe }}" target="_blank">{{ income_stocks(item)['company'] }}</a></td>
-    <td>{{ income_stocks(item)['ticker_link/_text']}}
-    <td>{{ income_stocks(item)['industry'] }}</td>
-    <td>{{ income_stocks(item)['price_number'] }}</td>
-{% if income_stocks(item)['change_number'] >= 0.0 %}
-    <td class="up">{{ income_stocks(item)['change'] }}</td>
-    {% else %}
-    <td class="down">{{ income_stocks(item)['change'] }}</td>
-    {% endif %}
-    <td>{{ income_stocks(item)['dividend'] }}</td>
-</tr>
-{% endif %}
-{% endfor %}
+
+
+{{ income_stocks|safe }}
+
 </table>
 </div>
 </div>
@@ -226,43 +194,10 @@
  <h3 align=center>Growth Stocks</h3>
  <p align=center><em>Sorted by P/E</em></p>
 <table align=center>
-<tr>
-    <td>
-        Company
-    </td>
-    <td>
-        Ticker
-    </td>
-    <td>
-        Industry
-    </td>
-    <td>
-        Price
-    </td>
-    <td>
-        Change
-    </td>
-    <td>
-        P/E
-    </td>
-</tr>
 
-{% for item in range(20) %}
-{% if growth_stocks(item)['price_number'] %}
-<tr>
-    <td><a href="{{ growth_stocks(item)['ticker_link']|safe }}" target="_blank">{{ growth_stocks(item)['company'] }}</a></td>
-    <td>{{ growth_stocks(item)['ticker_link/_text']}}
-    <td>{{ growth_stocks(item)['industry'] }}</td>
-    <td>{{ growth_stocks(item)['price_number'] }}</td>
-    {% if growth_stocks(item)['change_number'] >= 0.0 %}
-    <td class="up">{{ growth_stocks(item)['change'] }}</td>
-    {% else %}
-    <td class="down">{{ growth_stocks(item)['change'] }}</td>
-    {% endif %}
-    <td>{{ growth_stocks(item)['pe_number'] }}</td>
-</tr>
-{% endif %}
-{% endfor %}
+{{ growth_stocks|safe }}
+
+
 </table>
 </div>
 </div>

@@ -1,13 +1,9 @@
 import os
-import urllib
+import urllib.request
 from re import findall
 from bs4 import BeautifulSoup
 from flask import Flask, render_template
 import time
-
-# Individual scraper modules
-import scrapers.income as income
-import scrapers.growth as growth
 
 title = 'AceAdvisor'
 year = time.strftime("%Y")
@@ -16,12 +12,13 @@ app = Flask(__name__)
 class ScrapeSite:
 	def __init__(self, url):
 		self.url = url
-		self.data = urllib.urlopen(url)
+		self.data = urllib.request.urlopen(url)
 		self.soup = BeautifulSoup(self.data)
 		self.body = self.soup.get_text()
 
 	def regex(self, string):
 		return findall(string, self.body)
+
 
 ## Bloomberg Markets ##
 class BloombergMarkets(ScrapeSite):
@@ -57,9 +54,9 @@ class BloombergMarkets(ScrapeSite):
 		else:
 			return stock_markets, currencies, futures
 
-## Bloomberg News 
+## CNBC News 
 
-class BloombergNews(ScrapeSite):
+class CNBCNews(ScrapeSite):
 
 	def __init__(self):
 		ScrapeSite.__init__(self, 'http://www.cnbc.com')
@@ -68,7 +65,7 @@ class BloombergNews(ScrapeSite):
 		headlines = list(self.soup.find_all('h3', {"class":"headline"}))
 
 		return headlines
-		
+
 class OptionsScreener:
 
 	def pull_data(self, symbol):
@@ -80,15 +77,29 @@ class OptionsScreener:
 
 		return soup.find_all('table', {"class":"yfnc_datamodoutline1"})
 
+class ScreenerScraper(ScrapeSite):
+
+	def pull_table(self):
+		table = self.soup.find_all('table', {'bgcolor':'#d3d3d3'})
+
+		fixed_table = []
+
+		for items in table:
+			fixed_table.append(str(items).replace('href="quote.ashx', 'href="http://finviz.com/quote.ashx'))
+
+		return fixed_table
+
 		
 
 OS = OptionsScreener()
-BMNews = BloombergNews()
+CNBC_News = CNBCNews()
 BMScraper = BloombergMarkets()
+Income = ScreenerScraper('http://finviz.com/screener.ashx?v=152&f=an_recom_buybetter,fa_div_high,sh_avgvol_o500,sh_price_o10&ft=4&o=-dividendyield&c=0,1,2,3,4,5,6,7,14,65,66,67')
+Growth = ScreenerScraper('http://finviz.com/screener.ashx?v=151&f=fa_eps5years_pos,fa_estltgrowth_high,fa_pe_profitable,sh_avgvol_o500,sh_price_o10&ft=4&o=pe')
 
 @app.context_processor
 def scrapers():
-	return {'income_stocks':income.stocks, 'growth_stocks':growth.stocks, 'headlines':BMNews.scrape_news()}
+	return {'income_stocks':Income.pull_table(), 'growth_stocks':Growth.pull_table(), 'headlines':CNBC_News.scrape_news()}
 
 @app.context_processor
 def info():
