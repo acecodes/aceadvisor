@@ -62,17 +62,13 @@ class BloombergMarkets(ScrapeSite):
 class BloombergNews(ScrapeSite):
 
 	def __init__(self):
-		ScrapeSite.__init__(self, 'http://www.bloomberg.com/news/stocks/')
+		ScrapeSite.__init__(self, 'http://www.cnbc.com')
 
 	def scrape_news(self):
-		headlines = list(self.soup.find_all('a', {"class":"q story_link black"}))
-		fixed_headlines = []
-		for items in headlines:
-			link_fix = str(items).replace('href="/news','href="http://www.bloomberg.com/news')
-			fixed_headlines.append(link_fix)
+		headlines = list(self.soup.find_all('h3', {"class":"headline"}))
 
-		return fixed_headlines
-
+		return headlines
+		
 class OptionsScreener:
 
 	def pull_data(self, symbol):

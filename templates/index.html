@@ -12,7 +12,7 @@
 </div>
 <div class="panel callout"
 
-{% for items in headlines %}
+{% for items in headlines[:8] %}
 <p>{{ items|safe }}</p>
 {% endfor %}
 
