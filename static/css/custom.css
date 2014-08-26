@@ -1,88 +1,196 @@
 /* Custom CSS */
+@font-face {
+  font-family: Money;
+  src: url("/static/fonts/Cash Currency.ttf"); }
+@font-face {
+  font-family: Logo;
+  src: url("/static/fonts/RockoFLF.ttf"); }
+@font-face {
+  font-family: Reddit, sans-serif;
+  src: url("/static/fonts/RockoFLF.ttf"); }
+body {
+  font-family: Reddit, sans-serif; }
 
-@font-face { font-family: Money; src: url('/static/fonts/Cash Currency.ttf'); } 
-@font-face { font-family: Logo; src: url('/static/fonts/RockoFLF.ttf');}
-@font-face { font-family: Reddit; src: url('/static/fonts/RockoFLF.ttf');}
+h1 {
+  font-family: Money, serif; }
 
-body { font-family: Reddit; src: url('/static/fonts/RockoFLF.ttf');}
-h1 { font-family: Reddit; src: url('/static/fonts/RockoFLF.ttf'); }
 .thumbs img {
+  height: 70px;
+  width: 70px;
+  margin: 10px;
+  border: 1px #1AA6FF solid; }
 
-  height:70px;
-  width:70px;
-  margin:10px;
-  border:1px #1AA6FF solid;
-}
+.section-header {
+  text-align: center; }
 
-.section-header { text-align:center;}
+table {
+  border: 0;
+  text-align: center; }
 
-table { border:0; text-align:center;}
-
-.top-bar {background-color:#287E32;}
-
+.top-bar {
+  background: url(/static/img/headerbg.png);
+  background-position: 10px; }
   .top-bar .name {
-    text-align:center;
+    text-align: center;
     height: 45px;
     margin-top: 1em;
     font-size: 16px; }
-    .top-bar .name h1 {
-      font-family:Money;
-      line-height: 45px;
-      font-size: 3.2625rem;
-      margin: 0; }
+  .top-bar .name h1 {
+    font-family: Money, serif;
+    line-height: 45px;
+    font-size: 3.2625rem;
+    margin: 0; }
 
-.top-bar#sub { background-color:#59A128; text-align:center; margin-top:0px; height:40px; color:white; padding-bottom:30px;}
+.top-bar#sub {
+  background-color: #569C27;
+  background-image: none;
+  text-align: center;
+  margin-top: 0px;
+  height: 40px;
+  color: white;
+  padding-bottom: 30px; }
 
+p.tagline {
+  background-color: #162241;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 13px; }
 
-p.tagline {background-color:#162241; font-family:Arial; color:#ffffff; font-size:13px;}
+h2.site {
+  text-align: left;
+  text-align: center; }
 
-h2.site { text-align:left; text-align:center;}
+img.logos {
+  display: block;
+  margin: auto; }
 
-img.logos {display:block; margin:auto;}
-p.huge {font-size:8.5em; text-align:center; font-family:arial; margin:0; padding:0;}
-
+p.huge {
+  font-size: 8.5em;
+  text-align: center;
+  font-family: arial;
+  margin: 0;
+  padding: 0; }
 
 /* Bloomberg styles */
+#bloomberg {
+  background: #FFFFFF;
+  border-color: #DAD4D3; }
 
-#bloomberg {background:#FFFFFF;border-color:#DAD4D3;}
-.panel.callout#bloomberg {padding:0em; margin:0em;}
-.panel.callout.content#bloomberg {background:#FFFFFF;border-color:#FFFFFF;}
-.bloomberg-caption {text-align:center; padding-top:0.7em;}
-.bloomtext {font-family:Reddit;}
-.bloomtext#index {color:#000000; font-size:1.3em;}
-.bloomtext#value {color:#757575; font-size:1.4em;}
-.bloomtext#pos-change {color:#409610;}
-.bloomtext#neg-change {color:#BB0606;}
+.panel.callout#bloomberg {
+  padding: 0em;
+  margin: 0em; }
+
+.panel.callout.content#bloomberg {
+  background: #FFFFFF;
+  border-color: #FFFFFF; }
+
+.bloomberg-caption {
+  text-align: center;
+  padding-top: 0.7em; }
+
+.bloomtext {
+  font-family: Reddit, sans-serif; }
+
+.bloomtext#index {
+  color: #000000;
+  font-size: 1.3em; }
+
+.bloomtext#value {
+  color: #757575;
+  font-size: 1.4em; }
+
+.bloomtext#pos-change {
+  color: #409610; }
+
+.bloomtext#neg-change {
+  color: #BB0606; }
 
 /* Stock screener styles */
+#stocks {
+  background: #FFFFFF;
+  border-color: #DAD4D3; }
 
-#stocks {background:#FFFFFF;border-color:#DAD4D3;}
-.up {background-color:#59A128; color:white;}
-.down {background-color:#CC0000; color:white;}
+.up {
+  background-color: #59A128;
+  color: white; }
 
+.down {
+  background-color: #CC0000;
+  color: white; }
 
 /* Quote boxes */
-
 .quotes {
   margin: 0 auto;
   width: 10%;
   padding: 40px 20px 0px 20px;
-  text-align: center;
-}
+  text-align: center; }
 
-.quotes#pos { background:#BDE4A7;}
-.quotes#neg { background:#FCD4D4;}
+.quotes#pos {
+  background: #BDE4A7; }
+
+.quotes#neg {
+  background: #FCD4D4; }
 
 .small-quotes {
   margin: 0 auto;
   padding: 50px 20px 20px 20px;
-  text-align: center;
-}
+  text-align: center; }
 
-.small-quotes#pos { background:#BDE4A7;}
-.small-quotes#neg {background:#FCD4D4;}
+.small-quotes#pos {
+  background: #BDE4A7; }
 
+.small-quotes#neg {
+  background: #FCD4D4; }
 
 /* Misc */
+.copyright {
+  font-size: 0.8em;
+  text-align: center; }
 
-.copyright {font-size:0.8em; text-align:center;}
+/* CNBC News item styles */
+.panel.callout {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #A2C27B;
+  margin-bottom: 1.25rem;
+  padding: 1.25rem;
+  background: #E5FFE0;
+  color: #010101; }
+  .panel.callout a:not(.button) {
+    color: #010101; }
+
+h3.headline {
+  font-family: Reddit, sans-serif; }
+
+h3.headline a {
+  color: black; }
+
+.pill {
+  color: #FFF;
+  font-size: 12px;
+  text-transform: uppercase;
+  line-height: 0.7;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  /* In IE 7, This is inline block */
+  vertical-align: middle;
+  float: left;
+  border-radius: 3px 0 0 3px;
+  border-width: 0;
+  margin-right: 10px;
+  padding: 10px 5px 8px 7px;
+  position: relative; }
+
+.pill.blue {
+  background: #357BA0;
+  border-left-color: #3f9ccd; }
+
+.pill.gray {
+  background: #a2a09f;
+  border-left-color: #a2a09f; }
+
+.pill.silver {
+  background: #e0e4e7;
+  border-left-color: #e0e4e7;
+  color: #848484; }
