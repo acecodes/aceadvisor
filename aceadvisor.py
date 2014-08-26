@@ -65,7 +65,8 @@ class BloombergNews(ScrapeSite):
 		headlines = list(self.soup.find_all('a', {"class":"icon-article-headline"}))
 		
 		for link in headlines:
-		 	link['href'] = 'http://www.bloomberg.com/' + link['href']
+			if 'http://www.bloomberg.com' not in link['href']:
+		 		link['href'] = link['href'].replace('/news/', r'http://www.bloomberg.com/news/')
 
 		return headlines
 
@@ -84,7 +85,8 @@ class ScreenerScraper(ScrapeSite):
 
 	def pull_table(self):
 		for link in self.soup.find_all('a'):
-			link['href'] = 'http://www.finviz.com/' + link['href']
+			if 'http://www.finviz.com' not in link['href']:
+				link['href'] = link['href'].replace('quote.ashx', 'http://www.finviz.com/quote.ashx')
 
 		table = self.soup.find_all('table', {'bgcolor':'#d3d3d3'})
 
