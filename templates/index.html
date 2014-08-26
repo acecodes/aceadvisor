@@ -6,7 +6,7 @@
 
 <div class="large-12 columns">
 
-<h1>What would you like to view?</h1>
+<h3>What would you like to view?</h3>
 
 <div class="row">
 
@@ -15,8 +15,8 @@
 <ul class="pricing-table">
   <li class="title">Headlines</li>
   <li class="bullet-item">Business and market-affecting news from around the world.</li>
-  <li class="bullet-item">Source: <a href="http://www.cnbc.com">CNBC</a></li>
-  <li class="cta-button"><a class="button" href="#" id="headlines">Show</a></li>
+  <li class="bullet-item">Source: <a href="http://www.bloomberg.com">Bloomberg</a></li>
+  <li class="cta-button"><a class="button" href="#" id="headlines">Toggle</a></li>
 </ul>
 
 </div>
@@ -27,7 +27,7 @@
   <li class="title">Markets</li>
   <li class="bullet-item">Price levels for stocks, currencies and futures markets.</li>
   <li class="bullet-item">Source: <a href="http://www.bloomberg.com">Bloomberg</a></li>
-  <li class="cta-button"><a class="button" href="#" id="markets">Show</a></li>
+  <li class="cta-button"><a class="button" href="#" id="markets">Toggle</a></li>
 </ul>
 
 </div>
@@ -38,13 +38,15 @@
   <li class="title">Screened Stocks</li>
   <li class="bullet-item">Stocks that have been screened for specific, investment-grade criteria.</li>
   <li class="bullet-item">Source: <a href="http://www.finviz.com">FinViz</a></li>
-  <li class="cta-button"><a class="button" href="#" id="screener">Show</a></li>
+  <li class="cta-button"><a class="button" href="#" id="screener">Toggle</a></li>
 </ul>
 
 </div>
 
 </div>
 
+
+<p class="notes"><em>Note: These views can be combined. Try clicking more than one to give it a shot!</em>
 </div>
 
 
@@ -58,7 +60,7 @@
 </div>
 <div class="panel callout"
 
-{% for items in headlines[:8] %}
+{% for items in headlines[:15] %}
 <p>{{ items|safe }}</p>
 {% endfor %}
 

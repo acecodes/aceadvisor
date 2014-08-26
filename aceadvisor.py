@@ -1,6 +1,6 @@
 import os
 import urllib.request
-from re import findall
+from re import findall, sub
 from bs4 import BeautifulSoup
 from flask import Flask, render_template
 import time
@@ -54,15 +54,18 @@ class BloombergMarkets(ScrapeSite):
 		else:
 			return stock_markets, currencies, futures
 
-## CNBC News 
+## Bloomberg News 
 
-class CNBCNews(ScrapeSite):
+class BloombergNews(ScrapeSite):
 
 	def __init__(self):
-		ScrapeSite.__init__(self, 'http://www.cnbc.com')
+		ScrapeSite.__init__(self, 'http://www.bloomberg.com')
 
 	def scrape_news(self):
-		headlines = list(self.soup.find_all('h3', {"class":"headline"}))
+		headlines = list(self.soup.find_all('a', {"class":"icon-article-headline"}))
+		
+		for link in headlines:
+		 	link['href'] = 'http://www.bloomberg.com/' + link['href']
 
 		return headlines
 
@@ -80,26 +83,24 @@ class OptionsScreener:
 class ScreenerScraper(ScrapeSite):
 
 	def pull_table(self):
+		for link in self.soup.find_all('a'):
+			link['href'] = 'http://www.finviz.com/' + link['href']
+
 		table = self.soup.find_all('table', {'bgcolor':'#d3d3d3'})
 
-		fixed_table = []
-
-		for items in table:
-			fixed_table.append(str(items).replace('href="quote.ashx', 'href="http://finviz.com/quote.ashx'))
-
-		return fixed_table
+		return table
 
 		
 
 OS = OptionsScreener()
-CNBC_News = CNBCNews()
+Bloomberg_News = BloombergNews()
 BMScraper = BloombergMarkets()
 Income = ScreenerScraper('http://finviz.com/screener.ashx?v=152&f=an_recom_buybetter,fa_div_high,sh_avgvol_o500,sh_price_o10&ft=4&o=-dividendyield&c=0,1,2,3,4,5,6,7,14,65,66,67')
 Growth = ScreenerScraper('http://finviz.com/screener.ashx?v=151&f=fa_eps5years_pos,fa_estltgrowth_high,fa_pe_profitable,sh_avgvol_o500,sh_price_o10&ft=4&o=pe')
 
 @app.context_processor
 def scrapers():
-	return {'income_stocks':Income.pull_table(), 'growth_stocks':Growth.pull_table(), 'headlines':CNBC_News.scrape_news()}
+	return {'income_stocks':Income.pull_table(), 'growth_stocks':Growth.pull_table(), 'headlines':Bloomberg_News.scrape_news()}
 
 @app.context_processor
 def info():
