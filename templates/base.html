@@ -4,10 +4,10 @@
   <title>AceAdvisor</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/foundation.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" />
-  <script src="{{ url_for('static', filename='js/vendor/custom.modernizr.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/vendor/modernizr.js') }}"></script>
 
-  <link type="text/css" media="screen" rel="stylesheet" href="{{ url_for('static', filename='responsive-tables.css') }}" />
-<script type="text/javascript" src="{{ url_for('static', filename='css/responsive-tables.js') }}"></script>
+  <link type="text/css" media="screen" rel="stylesheet" href="{{ url_for('static', filename='css/responsive-tables.css') }}" />
+<script type="text/javascript" src="{{ url_for('static', filename='js/responsive-tables.js') }}"></script>
 
 </head>
 
@@ -30,13 +30,14 @@
   <script src="{{ url_for('static', filename='js/vendor/zepto.js') }}"></script>
   <script src="{{ url_for('static', filename='js/foundation.min.js') }}"></script>
   <script src="{{ url_for('static', filename='js/foundation/topbar.js') }}"></script>
-  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script src="{{ url_for('static', filename='js/aceadvisor.js') }}"></script>
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="{{ url_for('static', filename='js/aceadvisor.js') }}"></script>
   <script>
     $(document).foundation();
 
   </script>
+
 
 {% endblock js %}
 

@@ -10,7 +10,16 @@
 
 
 body { @include bodyfont;}
-h1 { @include moneyfont;}
+h1 { @include moneyfont; clear:both; text-align:center;}
+
+.pricing-table {
+  .title {background-color: #1E7F22;}
+}
+
+
+button:hover, button:focus, .button:hover, .button:focus {background-color:#4B862A;}
+button, .button {background-color:#5C9E37;}
+
 
 .thumbs img {
 
@@ -164,3 +173,19 @@ h3.headline a {
     border-left-color: #e0e4e7;
     color: #848484;
 }
+
+.toggle-buttons {
+  text-align:center;
+  margin-bottom:0px;
+  height:100px;
+}
+
+.buttons-container {
+  margin:auto;
+  clear:both;
+  bottom:10px;
+  width:50%;
+}
+#top { clear:both; display:none; }
+#middle { clear:both; display:none; }
+#bottom { clear:both; display:none; }

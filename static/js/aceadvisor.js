@@ -17,3 +17,18 @@ $(document).ready(function () {
     });
 });
 
+$( "#headlines" ).click(function() {
+  $( "#top" ).toggle( "slow", function() {
+  });
+});
+
+$( "#markets" ).click(function() {
+  $( "#middle" ).toggle( "slow", function() {
+  });
+});
+
+$( "#screener" ).click(function() {
+  $( "#bottom" ).toggle( "slow", function() {
+  });
+});
+
