@@ -75,7 +75,7 @@ class OptionsScreener:
 	def pull_data(self, symbol):
 		url = 'http://finance.yahoo.com/q/op?s={symbol}'.format(symbol=symbol)
 
-		data = urllib.urlopen(url)
+		data = urllib.request.urlopen(url)
 		soup = BeautifulSoup(data)
 		body = soup.get_text()
 
