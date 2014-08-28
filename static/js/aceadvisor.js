@@ -32,3 +32,8 @@ $( "#screener" ).click(function() {
   });
 });
 
+$( "#options" ).click(function() {
+  $( "#options_form" ).toggle( "slow", function() {
+  });
+});
+

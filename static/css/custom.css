@@ -209,6 +209,11 @@ h3.headline a {
   border-left-color: #e0e4e7;
   color: #848484; }
 
+/* Front page boxes */
+#options_form {
+  clear: both;
+  display: none; }
+
 #top {
   clear: both;
   display: none; }
@@ -224,3 +229,11 @@ h3.headline a {
 .notes {
   text-align: center;
   font-size: 0.9em; }
+
+/* Options styles */
+.options_table {
+  margin: auto 10% auto 10%; }
+
+.company_data h2 {
+  font-family: Reddit, sans-serif;
+  font-size: 1.2em; }

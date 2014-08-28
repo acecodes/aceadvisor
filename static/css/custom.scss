@@ -7,6 +7,7 @@
 @mixin bodyfont {font-family: Reddit, sans-serif;}
 @mixin moneyfont {font-family: Money, serif;}
 @mixin logofont {font-family: Logo, sans-serif;}
+@mixin toggles {clear:both; display:none;}
 
 
 body { @include bodyfont;}
@@ -175,9 +176,15 @@ h3.headline a {
     color: #848484;
 }
 
+/* Front page boxes */
 
-#top { clear:both; display:none; }
-#middle { clear:both; display:none; }
-#bottom { clear:both; display:none; }
-
+#options_form { @include toggles; }
+#top { @include toggles; }
+#middle { @include toggles; }
+#bottom { @include toggles; }
 .notes {text-align:center; font-size:0.9em;}
+
+/* Options styles */
+
+.options_table { margin:auto 10% auto 10%; }
+.company_data h2 { @include bodyfont; font-size:1.2em;}

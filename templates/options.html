@@ -4,7 +4,15 @@
 
 <!-- This is a test! -->
 
-{{ table('MSFT')|safe }}
+<div class="row">
 
+<div class="large-2 columns"><p></p></div>
+<div class="large-8 columns">
+<h1> {{ symbol }} </h1>
+<div class="company_data"> {{ company_data|safe }} </div>
+{{ table|safe }}
+</div>
+<div class="large-2 columns"><p></p></div>
+</div>
 
 {% endblock %}

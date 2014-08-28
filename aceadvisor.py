@@ -72,12 +72,21 @@ class BloombergNews(ScrapeSite):
 
 class OptionsScreener:
 
-	def pull_data(self, symbol):
-		url = 'http://finance.yahoo.com/q/op?s={symbol}'.format(symbol=symbol)
+	def pull_data(self, symbol, timeframe=None, name=False):
+		if timeframe == None:
+			url = 'http://finance.yahoo.com/q/op?s={symbol}'.format(symbol=symbol)
+
+		if timeframe != None:
+			url = 'http://finance.yahoo.com/q/op?s={symbol}&m={timeframe}'.format(symbol=symbol, timeframe=timeframe)
 
 		data = urllib.request.urlopen(url)
 		soup = BeautifulSoup(data)
 		body = soup.get_text()
+
+		if name == True:
+			title = soup.find(class_="title")
+			return title.prettify(formatter=None)
+
 
 		return soup.find_all('table', {"class":"yfnc_datamodoutline1"})
 
@@ -112,9 +121,9 @@ def info():
 def index():
 	return render_template('index.html', stock_markets=BMScraper.pull_data('stock_markets'), futures=BMScraper.pull_data('futures'), currencies=BMScraper.pull_data('currencies'))
 
-@app.route('/options')
-def options():
-	return render_template('options.html', table=OS.pull_data)
+@app.route('/options/<symbol>')
+def options(symbol):
+	return render_template('options.html', table=OS.pull_data(symbol), symbol=symbol, company_data=OS.pull_data(symbol, name=True))
 
 if __name__ == '__main__':
 	app.run(debug=True, port=8001)
