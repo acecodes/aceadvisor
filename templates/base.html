@@ -5,7 +5,8 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/foundation.css') }}" />
   <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}" />
   <script src="{{ url_for('static', filename='js/vendor/modernizr.js') }}"></script>
-
+    {{ moment.include_jquery() }}
+    {{ moment.include_moment() }}
   <link type="text/css" media="screen" rel="stylesheet" href="{{ url_for('static', filename='css/responsive-tables.css') }}" />
 <script type="text/javascript" src="{{ url_for('static', filename='js/responsive-tables.js') }}"></script>
 

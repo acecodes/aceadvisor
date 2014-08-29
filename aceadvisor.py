@@ -1,13 +1,20 @@
 import os
 import urllib.request
+import time
+from datetime import datetime, date
 from re import findall, sub
 from bs4 import BeautifulSoup
-from flask import Flask, render_template
-import time
+from flask import Flask, render_template, request, session, redirect, url_for, flash
+from flask.ext.moment import Moment
+
 
 title = 'AceAdvisor'
 year = time.strftime("%Y")
 app = Flask(__name__)
+moment = Moment(app)
+current_time = datetime.utcnow()
+open_time = current_time.replace(hour=13, minute=30, second=0, microsecond=0)
+close_time = current_time.replace(hour=20, minute=0, second=0, microsecond=0)
 
 class ScrapeSite:
 	def __init__(self, url):
@@ -111,7 +118,7 @@ Growth = ScreenerScraper('http://finviz.com/screener.ashx?v=151&f=fa_eps5years_p
 
 @app.context_processor
 def scrapers():
-	return {'income_stocks':Income.pull_table(), 'growth_stocks':Growth.pull_table(), 'headlines':Bloomberg_News.scrape_news()}
+	return {'income_stocks':Income.pull_table(), 'growth_stocks':Growth.pull_table(), 'headlines':Bloomberg_News.scrape_news(), 'current_time':current_time, 'open_time':open_time, 'close_time':close_time}
 
 @app.context_processor
 def info():
