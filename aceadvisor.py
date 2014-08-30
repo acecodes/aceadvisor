@@ -17,9 +17,17 @@ open_time = current_time.replace(hour=13, minute=30, second=0, microsecond=0)
 close_time = current_time.replace(hour=20, minute=0, second=0, microsecond=0)
 
 class ScrapeSite:
+
 	def __init__(self, url):
+		self.header = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
+       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+       'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+       'Accept-Encoding': 'none',
+       'Accept-Language': 'en-US,en;q=0.8',
+       'Connection': 'keep-alive'}
 		self.url = url
-		self.data = urllib.request.urlopen(url)
+		self.req = urllib.request.Request(self.url, headers=self.header)
+		self.data = urllib.request.urlopen(self.req)
 		self.soup = BeautifulSoup(self.data)
 		self.body = self.soup.get_text()
 
@@ -108,6 +116,16 @@ class ScreenerScraper(ScrapeSite):
 
 		return table
 
+class MarketStatus(ScrapeSite):
+
+	def __init__(self):
+		ScrapeSite.__init__(self, 'https://secure.marketwatch.com/investing/index/DJIA')
+
+	def open_closed(self):
+
+		return self.soup.find(class_="column marketstate").string
+
+
 		
 
 OS = OptionsScreener()
@@ -115,10 +133,11 @@ Bloomberg_News = BloombergNews()
 BMScraper = BloombergMarkets()
 Income = ScreenerScraper('http://finviz.com/screener.ashx?v=152&f=an_recom_buybetter,fa_div_high,sh_avgvol_o500,sh_price_o10&ft=4&o=-dividendyield&c=0,1,2,3,4,5,6,7,14,65,66,67')
 Growth = ScreenerScraper('http://finviz.com/screener.ashx?v=151&f=fa_eps5years_pos,fa_estltgrowth_high,fa_pe_profitable,sh_avgvol_o500,sh_price_o10&ft=4&o=pe')
+Status = MarketStatus()
 
 @app.context_processor
 def scrapers():
-	return {'income_stocks':Income.pull_table(), 'growth_stocks':Growth.pull_table(), 'headlines':Bloomberg_News.scrape_news(), 'current_time':current_time, 'open_time':open_time, 'close_time':close_time}
+	return {'income_stocks':Income.pull_table(), 'growth_stocks':Growth.pull_table(), 'headlines':Bloomberg_News.scrape_news(), 'open_closed':Status.open_closed()}
 
 @app.context_processor
 def info():

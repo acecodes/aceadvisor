@@ -7,12 +7,7 @@
 <div class="large-12 columns">
 
 <h3>What would you like to view?</h3>
-<p>Local time: {{ moment(current_time).format('h:mm:ss a') }}</p>
-{% if current_time <= close_time and current_time >= open_time %}
-<p>The market is open</p>
-{% else %}
-<p>The market is closed</p>
-{% endif %}
+<p>{{ open_closed }}</p>
 
 <div class="row">
 
