@@ -37,3 +37,7 @@ $( "#options" ).click(function() {
   });
 });
 
+$( ".alert-box" ).click(function() {
+  $( ".alert-box" ).toggle( "slow", function() {
+  });
+});

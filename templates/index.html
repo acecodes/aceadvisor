@@ -6,8 +6,21 @@
 
 <div class="large-12 columns">
 
-<h3>What would you like to view?</h3>
-<p>{{ open_closed }}</p>
+<div class="marketstatus">
+{% if "open" in open_closed %}
+
+<div data-alert class="alert-box success radius">
+  US markets are currently open!
+  <a href="#" class="close">&times;</a>
+</div>
+
+{% else %}
+<div data-alert class="alert-box alert radius">
+  US markets are currently closed.
+  <a href="#" class="close">&times;</a>
+</div>
+{% endif %}
+</div>
 
 <div class="row">
 
@@ -48,7 +61,7 @@
 
 </div>
 
-<p class="notes"><a class="button" href="#" id="options">Options Quotes</a></p>
+<p class="notes"><a class="button" href="#" id="options">Options Quotes (under construction)</a></p>
 
 <div id="options_form">
 <form>

@@ -230,6 +230,17 @@ h3.headline a {
   text-align: center;
   font-size: 0.9em; }
 
+.marketstatus {
+  text-align: center;
+  margin: auto auto 2% auto; }
+
+.alert-box {
+  font-family: Reddit, sans-serif;
+  font-size: 2em; }
+
+.alert-box.alert {
+  background-color: #CC162C; }
+
 /* Options styles */
 .options_table {
   margin: auto 10% auto 10%; }

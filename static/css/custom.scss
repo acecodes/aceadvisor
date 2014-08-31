@@ -183,6 +183,10 @@ h3.headline a {
 #middle { @include toggles; }
 #bottom { @include toggles; }
 .notes {text-align:center; font-size:0.9em;}
+.marketstatus {text-align:center; margin:auto auto 2% auto;}
+
+.alert-box {@include bodyfont; font-size:2em;}
+.alert-box.alert {background-color:#CC162C;}
 
 /* Options styles */
 
