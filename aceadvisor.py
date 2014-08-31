@@ -5,16 +5,10 @@ from datetime import datetime, date
 from re import findall, sub
 from bs4 import BeautifulSoup
 from flask import Flask, render_template, request, session, redirect, url_for, flash
-from flask.ext.moment import Moment
-
 
 title = 'AceAdvisor'
 year = time.strftime("%Y")
 app = Flask(__name__)
-moment = Moment(app)
-current_time = datetime.utcnow()
-open_time = current_time.replace(hour=13, minute=30, second=0, microsecond=0)
-close_time = current_time.replace(hour=20, minute=0, second=0, microsecond=0)
 
 class ScrapeSite:
 
