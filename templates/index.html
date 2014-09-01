@@ -70,11 +70,17 @@
     <div class="large-6 columns">
       <div class="row collapse">
         <div class="small-10 columns">
-          <input type="text" placeholder="Ticker symbol">
+          <form method="POST" action="{{ url_for('options', symbol=options_form.symbol) }}">
+            {{ options_form.symbol.label }} {{ options_form.symbol(size=20) }}
+            {{ options_form.hidden_tag() }}
+            <input type="submit" value="Submit">
+           </form>
+        
+          </form>
         </div>
-        <div class="small-2 columns">
-          <a href="#" class="button postfix" id="option_quote">Go</a>
-        </div>
+<!--         <div class="small-2 columns">
+          <a href="" class="button postfix" id="option_quote">Go</a>
+        </div> -->
       </div>
     </div>
   <div class="large-3 columns"><p></p></div>
