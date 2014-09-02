@@ -6,12 +6,14 @@ from re import findall, sub
 from bs4 import BeautifulSoup
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from flask_wtf import Form
-from wtforms import StringField
+from wtforms import StringField, SubmitField
 from wtforms.validators import Required
+from flask_bootstrap import Bootstrap
 
 title = 'AceAdvisor'
 year = time.strftime("%Y")
 app = Flask(__name__)
+bootstrap = Bootstrap(app)
 
 CSRF_ENABLED = True
 app.config['SECRET_KEY'] = 'This is a temporary key that will be replaced once the app is deployed'
@@ -113,6 +115,7 @@ class OptionsScreener:
 
 class OptionsForm(Form):
 	symbol = StringField('Enter a ticker symbol:', validators=[Required()])
+	submit = SubmitField('Submit')
 
 ## Stock Screeners ##
 
@@ -156,14 +159,14 @@ def scrapers():
 def info():
 	return {'title':title, 'year':year}
 
-@app.route('/')
-def index(methods=['POST']):
+@app.route('/', methods=['GET', 'POST'])
+def index():
 	form = OptionsForm()
 	if form.validate_on_submit():
-		return redirect('/options')
+		return redirect(url_for('options'))
 	return render_template('index.html', stock_markets=BMScraper.pull_data('stock_markets'), futures=BMScraper.pull_data('futures'), currencies=BMScraper.pull_data('currencies'), options_form=form)
 
-@app.route('/options/<symbol>')
+@app.route('/options/<symbol>', methods=['GET', 'POST'])
 def options(symbol):
 	return render_template('options.html', table=OS.pull_data(symbol), symbol=symbol, company_data=OS.pull_data(symbol, name=True))
 

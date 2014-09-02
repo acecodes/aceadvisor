@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
 {% block content %}
 
@@ -64,19 +65,14 @@
 <p class="notes"><a class="button" href="#" id="options">Options Quotes (under construction)</a></p>
 
 <div id="options_form">
-<form>
   <div class="row">
   <div class="large-3 columns"><p></p></div>
     <div class="large-6 columns">
       <div class="row collapse">
         <div class="small-10 columns">
-          <form method="POST" action="{{ url_for('options', symbol=options_form.symbol) }}">
-            {{ options_form.symbol.label }} {{ options_form.symbol(size=20) }}
-            {{ options_form.hidden_tag() }}
-            <input type="submit" value="Submit">
-           </form>
-        
-          </form>
+  
+    {{ wtf.quick_form(options_form) }}
+
         </div>
 <!--         <div class="small-2 columns">
           <a href="" class="button postfix" id="option_quote">Go</a>
