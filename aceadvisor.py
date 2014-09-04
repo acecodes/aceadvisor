@@ -7,13 +7,13 @@ from bs4 import BeautifulSoup
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 from flask_wtf import Form
 from wtforms import StringField, SubmitField
-from wtforms.validators import Required
-from flask_bootstrap import Bootstrap
+from wtforms.validators import Required, Length
+
 
 title = 'AceAdvisor'
 year = time.strftime("%Y")
 app = Flask(__name__)
-bootstrap = Bootstrap(app)
+
 
 CSRF_ENABLED = True
 app.config['SECRET_KEY'] = 'This is a temporary key that will be replaced once the app is deployed'
@@ -106,15 +106,17 @@ class OptionsScreener:
 
 		if name == True:
 			title = soup.find(class_="title")
-			return title.prettify(formatter=None)
-
+			try:
+				return title.prettify(formatter=None)
+			except:
+				return 'Invalid.'
 
 		return soup.find_all('table', {"class":"yfnc_datamodoutline1"})
 
 ## Options form ##
 
 class OptionsForm(Form):
-	symbol = StringField('Enter a ticker symbol:', validators=[Required()])
+	symbol = StringField('Enter a ticker symbol:', validators=[Required(), Length(min=1, max=5)])
 	submit = SubmitField('Submit')
 
 ## Stock Screeners ##
@@ -167,8 +169,9 @@ def options(symbol):
 @app.route('/', methods=['GET', 'POST'])
 def index():
 	form = OptionsForm()
+	print(form.errors)
 	if form.validate_on_submit():
-		return redirect('/options/')
+		return redirect(url_for('options'))
 	return render_template('index.html', stock_markets=BMScraper.pull_data('stock_markets'), futures=BMScraper.pull_data('futures'), currencies=BMScraper.pull_data('currencies'), options_form=form)
 
 if __name__ == '__main__':
