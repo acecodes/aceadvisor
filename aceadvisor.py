@@ -161,8 +161,8 @@ def info():
 
 @app.route('/options/<symbol>', methods=['GET', 'POST'])
 def options(symbol):
-	symbol_data = request.form['options_form']
-	return render_template('options.html', table=OS.pull_data(symbol), symbol=symbol, company_data=OS.pull_data(symbol, name=True), symbol_data=symbol_data)
+	symbol = request.form['symbol']
+	return render_template('options.html', table=OS.pull_data(symbol), symbol=symbol, company_data=OS.pull_data(symbol, name=True))
 
 @app.route('/', methods=['GET', 'POST'])
 def index():

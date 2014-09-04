@@ -33,7 +33,7 @@ $( "#screener" ).click(function() {
 });
 
 $( "#options" ).click(function() {
-  $( "#options_form" ).toggle( "slow", function() {
+  $( "#options_area" ).toggle( "slow", function() {
   });
 });
 

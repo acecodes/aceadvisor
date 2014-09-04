@@ -64,18 +64,21 @@
 
 <p class="notes"><a class="button" href="#" id="options">Options Quotes (under construction)</a></p>
 
-<div id="options_form">
+<div id="options_area">
   <div class="row">
   <div class="large-3 columns"><p></p></div>
     <div class="large-6 columns">
       <div class="row collapse">
         <div class="small-12 columns">
-  
+
+    <div id="options_form">
     <form method="POST" action="{{ url_for('options', symbol=options_form.symbol) }}">
         {{ options_form.hidden_tag() }}
         {{ options_form.symbol(size=10) }}
     <input type="submit" value="Options" a class="btn btn-lg btn-danger" role="button"></a>
 
+    </form>
+    </div>
         </div>
 <!--         <div class="small-2 columns">
           <a href="" class="button postfix" id="option_quote">Go</a>

@@ -178,7 +178,7 @@ h3.headline a {
 
 /* Front page boxes */
 
-#options_form { @include toggles; }
+#options_area { @include toggles; }
 #top { @include toggles; }
 #middle { @include toggles; }
 #bottom { @include toggles; }
