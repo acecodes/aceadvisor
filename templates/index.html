@@ -70,13 +70,11 @@
       <div class="row collapse">
         <div class="small-12 columns">
 
-    <div id="options_form">
-    <form method="POST" action="{{ url_for('options', symbol=options_form.symbol) }}">
+    <div id="options_div">
+    <form method="POST" name="symbol_form" action="{{ url_for('options', symbol=options_form.symbol) }}">
         {{ options_form.hidden_tag() }}
         {{ options_form.symbol(size=10) }}
         {{ options_form.submit(size=10) }}
-    
-
     </form>
 
 {% for message in get_flashed_messages() %}

@@ -108,7 +108,9 @@ class OptionsScreener:
 			title = soup.find(class_="title")
 			try:
 				return title.prettify(formatter=None)
+
 			except:
+
 				return 'Invalid.'
 
 		return soup.find_all('table', {"class":"yfnc_datamodoutline1"})
@@ -163,7 +165,10 @@ def info():
 
 @app.route('/options/<symbol>', methods=['GET', 'POST'])
 def options(symbol):
-	symbol = request.form['symbol']
+	try:
+		symbol = request.form['symbol']
+	except:
+		pass
 	return render_template('options.html', table=OS.pull_data(symbol), symbol=symbol, company_data=OS.pull_data(symbol, name=True))
 
 @app.route('/', methods=['GET', 'POST'])
@@ -171,7 +176,7 @@ def index():
 	form = OptionsForm()
 	print(form.errors)
 	if form.validate_on_submit():
-		return redirect(url_for('options'))
+		return redirect(url_for('options', symbol=form.symbol.data))
 	return render_template('index.html', stock_markets=BMScraper.pull_data('stock_markets'), futures=BMScraper.pull_data('futures'), currencies=BMScraper.pull_data('currencies'), options_form=form)
 
 if __name__ == '__main__':
