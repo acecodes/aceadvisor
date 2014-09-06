@@ -119,7 +119,7 @@ class OptionsScreener:
 
 class OptionsForm(Form):
 	symbol = StringField('Enter a ticker symbol:', validators=[Required(), Length(min=1, max=5)])
-	submit = SubmitField('Submit')
+	submit = SubmitField('Get Options Quotes')
 
 ## Stock Screeners ##
 
