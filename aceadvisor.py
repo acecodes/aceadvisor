@@ -111,7 +111,7 @@ class OptionsScreener:
 
 			except:
 
-				return 'Invalid.'
+				return None
 
 		return soup.find_all('table', {"class":"yfnc_datamodoutline1"})
 

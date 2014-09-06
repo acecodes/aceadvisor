@@ -5,13 +5,11 @@
 <!-- This is a test! -->
 
 <div class="row">
-{% if 'Invalid' in symbol %}
-<div class="large-2 columns"><p></p></div>
-<div class="large-8 columns">
+{% if symbol != None %}
+<div class="large-12 columns">
 <h1> {{ symbol }} </h1>
 <div class="company_data"> {{ company_data|safe }} </div>
 {{ table|safe }}
-<div class="large-2 columns"><p></p></div>
 </div>
 
 {% else %}
