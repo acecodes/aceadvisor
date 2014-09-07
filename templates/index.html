@@ -71,7 +71,7 @@
         <div class="small-12 columns">
 
     <div id="options_div">
-    <form method="POST" name="symbol_form" action="{{ url_for('options', symbol=options_form.symbol) }}">
+    <form method="POST" name="symbol_form" action="{{ url_for('options') }}">
         {{ options_form.hidden_tag() }}
         {{ options_form.symbol(size=10) }}
         {{ options_form.submit(size=10) }}

@@ -163,12 +163,12 @@ def scrapers():
 def info():
 	return {'title':title, 'year':year}
 
-@app.route('/options/<symbol>', methods=['GET', 'POST'])
-def options(symbol):
+@app.route('/options', methods=['GET', 'POST'])
+def options():
 	try:
 		symbol = request.form['symbol']
 	except:
-		pass
+		symbol = None
 	return render_template('options.html', table=OS.pull_data(symbol), symbol=symbol, company_data=OS.pull_data(symbol, name=True))
 
 @app.route('/', methods=['GET', 'POST'])
