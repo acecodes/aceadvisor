@@ -16,7 +16,8 @@ app = Flask(__name__)
 
 
 CSRF_ENABLED = True
-app.config['SECRET_KEY'] = 'This is a temporary key that will be replaced once the app is deployed'
+
+app.config.from_object('config')
 
 ## Base class for scraping websites ##
 
