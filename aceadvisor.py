@@ -166,7 +166,7 @@ def scrapers():
 def info():
 	return {'title':title, 'year':year}
 
-@cache.cached(timeout=50)
+@cache.cached(timeout=60)
 @app.route('/options', methods=['GET', 'POST'])
 def options():
 	try:
@@ -175,7 +175,7 @@ def options():
 		symbol = None
 	return render_template('options.html', table=OS.pull_data(symbol), symbol=symbol, company_data=OS.pull_data(symbol, name=True))
 
-@cache.cached(timeout=50)
+@cache.cached(timeout=60)
 @app.route('/', methods=['GET', 'POST'])
 def index():
 	form = OptionsForm()
