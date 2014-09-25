@@ -8,11 +8,13 @@ from flask import Flask, render_template, request, session, redirect, url_for, f
 from flask_wtf import Form
 from wtforms import StringField, SubmitField
 from wtforms.validators import Required, Length
+from flask.ext.cache import Cache
 
 
 title = 'AceAdvisor'
 year = time.strftime("%Y")
 app = Flask(__name__)
+cache = Cache(app, config={'CACHE_TYPE':'simple'})
 
 
 CSRF_ENABLED = True
@@ -164,6 +166,7 @@ def scrapers():
 def info():
 	return {'title':title, 'year':year}
 
+@cache.cached(timeout=50)
 @app.route('/options', methods=['GET', 'POST'])
 def options():
 	try:
@@ -172,6 +175,7 @@ def options():
 		symbol = None
 	return render_template('options.html', table=OS.pull_data(symbol), symbol=symbol, company_data=OS.pull_data(symbol, name=True))
 
+@cache.cached(timeout=50)
 @app.route('/', methods=['GET', 'POST'])
 def index():
 	form = OptionsForm()
