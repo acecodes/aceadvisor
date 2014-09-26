@@ -108,7 +108,7 @@ class OptionsScreener:
 		body = soup.get_text()
 
 		if name == True:
-			title = soup.find(class_="title")
+			title = soup.find('div', {"class":"title"})
 			try:
 				return title.prettify(formatter=None)
 
