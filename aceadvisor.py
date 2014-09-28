@@ -96,31 +96,37 @@ class BloombergNews(ScrapeSite):
 
 class OptionsScreener:
 
-	def pull_data(self, symbol, timeframe=None, name=False):
-		if timeframe == None:
-			url = 'http://finance.yahoo.com/q/op?s={symbol}'.format(symbol=symbol)
+	def __init__(self, ticker):
+
+		self.ticker = ticker
+		self.url = 'http://finance.yahoo.com/q/op?s={ticker}'.format(ticker=ticker)
+		self.data = urllib.request.urlopen(self.url)
+		self.soup = BeautifulSoup(self.data)
+		self.body = self.soup.get_text()
+		self.table = self.soup.find_all('table', {"class":"yfnc_datamodoutline1"})
+
+	def calls(self, timeframe=None):
 
 		if timeframe != None:
-			url = 'http://finance.yahoo.com/q/op?s={symbol}&m={timeframe}'.format(symbol=symbol, timeframe=timeframe)
+			self.url = 'http://finance.yahoo.com/q/op?s={symbol}&m={timeframe}'.format(symbol=self.ticker, timeframe=timeframe)	
 
-		data = urllib.request.urlopen(url)
-		soup = BeautifulSoup(data)
-		body = soup.get_text()
+		return self.table[0]
 
-		if name == True:
-			search = soup.get_text()
-			final_title = []
-			first_title = findall(r'SheetCash Flow\s.+\(.+\w+\)', search)
-			for i in first_title:
-				final_title.append(i.replace('SheetCash Flow\n', ''))
-			try:
-				return final_title[0]
-			except:
-				return None
+	def puts(self, timeframe=None):
+		if timeframe != None:
+			self.url = 'http://finance.yahoo.com/q/op?s={symbol}&m={timeframe}'.format(symbol=self.ticker, timeframe=timeframe)
 
-		table = soup.find_all('table', {"class":"yfnc_datamodoutline1"})
+		return self.table[1]
 
-		return table
+	def company_name(self, symbol):
+		
+		first_title = findall(r'SheetCash Flow\s.+\(.+\w+\)', self.body)
+		final_title = [item.replace('SheetCash Flow\n', '') for item in first_title]
+
+		try:
+			return final_title[0]
+		except:
+			return None
 
 ## Options form ##
 
@@ -152,10 +158,6 @@ class MarketStatus(ScrapeSite):
 
 		return self.soup.find(class_="column marketstate").string
 
-
-		
-
-OS = OptionsScreener()
 Bloomberg_News = BloombergNews()
 BMScraper = BloombergMarkets()
 Income = ScreenerScraper('http://finviz.com/screener.ashx?v=152&f=an_recom_buybetter,fa_div_high,sh_avgvol_o500,sh_price_o10&ft=4&o=-dividendyield&c=0,1,2,3,4,5,6,7,14,65,66,67')
@@ -177,7 +179,9 @@ def options():
 		symbol = request.form['symbol']
 	except:
 		symbol = None
-	return render_template('options.html', table=OS.pull_data(symbol), symbol=symbol, company_data=OS.pull_data(symbol, name=True))
+
+	OS = OptionsScreener(symbol)
+	return render_template('options.html', symbol=symbol, calls=OS.calls(symbol), puts=OS.puts(symbol), company_name=OS.company_name(symbol))
 
 @cache.cached(timeout=60)
 @app.route('/', methods=['GET', 'POST'])
