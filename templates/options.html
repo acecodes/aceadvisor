@@ -8,7 +8,7 @@
 {% if symbol != None %}
 <div class="large-12 columns">
 <h1> {{ symbol }} </h1>
-<div class="company_data"> {{ company_data }} </div>
+<div class="company_data"> {{ company_data|safe }} </div>
 {{ table|safe }}
 </div>
 

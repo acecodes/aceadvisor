@@ -108,15 +108,19 @@ class OptionsScreener:
 		body = soup.get_text()
 
 		if name == True:
-			title = soup.find('div', {"class":"title"})
+			search = soup.get_text()
+			final_title = []
+			first_title = findall(r'SheetCash Flow\s.+\(.+\w+\)', search)
+			for i in first_title:
+				final_title.append(i.replace('SheetCash Flow\n', ''))
 			try:
-				return title.prettify(formatter=None)
-
+				return final_title[0]
 			except:
-
 				return None
 
-		return soup.find_all('table', {"class":"yfnc_datamodoutline1"})
+		table = soup.find_all('table', {"class":"yfnc_datamodoutline1"})
+
+		return table
 
 ## Options form ##
 
