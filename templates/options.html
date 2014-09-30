@@ -8,8 +8,10 @@
 {% if symbol != None %}
 <div class="large-12 columns">
 <h1> {{ symbol }} </h1>
-<div class="company_data"> {{ company_name|safe }} </div>
+<div class="company_data"><h2>{{ company_name|safe }}<h2></div>
+<h4>Calls</h2>
 {{ calls|safe }}<br />
+<h4>Puts</h2>
 {{ puts|safe }}
 </div>
 
