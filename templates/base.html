@@ -7,17 +7,43 @@
   <script src="{{ url_for('static', filename='js/vendor/modernizr.js') }}"></script>
   <link type="text/css" media="screen" rel="stylesheet" href="{{ url_for('static', filename='css/responsive-tables.css') }}" />
 <script type="text/javascript" src="{{ url_for('static', filename='js/responsive-tables.js') }}"></script>
+<link href='http://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
 
 </head>
 
 <body>
 {% block nav %}
-<nav class="top-bar" data-topbar><div class="name"><h1><a href="/">{{ title }}</a></h1>
-</div> </nav>
 
-<nav id="sub" class="top-bar" data-topbar>
-<em>Automated information gathering for financial professionals</em></section></nav>
-<br />
+ <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+       
+      <li class="name">
+        <h1>
+          <a href="/">
+            {{ title }}
+          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+
+
+    <section class="top-bar-section">
+       
+      <ul class="right">
+        <li class="divider"></li>
+        <li>
+          <a href="http://www.acecodes.net">Author Site</a>
+          </li>
+        <li class="divider"></li>
+        <li><a href="http://www.github.com/acecodes/aceadvisor">Github</a></li>
+        <li class="divider"></li>
+      </ul>
+    </section>
+  </nav>
+
+
+
 {% endblock nav %}
 
 {% block content %}

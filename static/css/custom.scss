@@ -1,11 +1,10 @@
 /* Custom CSS */
 
-@font-face { font-family: Money; src: url('/static/fonts/Cash Currency.ttf'); } 
 @font-face { font-family: Logo; src: url('/static/fonts/RockoFLF.ttf');}
 @font-face { font-family: Reddit, sans-serif; src: url('/static/fonts/RockoFLF.ttf');}
 
 @mixin bodyfont {font-family: Reddit, sans-serif;}
-@mixin moneyfont {font-family: Money, serif;}
+@mixin moneyfont {font-family: 'Bree Serif', serif;}
 @mixin logofont {font-family: Logo, sans-serif;}
 @mixin toggles {clear:both; display:none;}
 
@@ -35,18 +34,19 @@ button, .button {background-color:#5C9E37;}
 table { border:0; text-align:center;}
 
 .top-bar {
-  background: url(/static/img/headerbg.png); 
-  background-position: 10px;
+  background: #16721E;
+  height:50px;
+  margin-bottom:1em; 
 
   .name {
     text-align:center;
     height: 45px;
-    margin-top: 1em;
-    font-size: 16px; }
+    margin-top: 0px;
+    font-size: 1.5em; }
   .name h1 {
     @include moneyfont;
     line-height: 45px;
-    font-size: 3.2625rem;
+    font-size: 1.8em;
     margin: 0; }
 
 }
@@ -62,6 +62,13 @@ table { border:0; text-align:center;}
 
 
 
+.top-bar-section li:not(.has-form) a:not(.button):hover{ background: #55B614; height:100%;}
+
+.top-bar-section li {background: #16721E; height:100%;}
+
+.top-bar-section li:not(.has-form) a:not(.button) { line-height:50px; background: #16721E; @include moneyfont; }
+
+.top-bar-section > ul > .divider, .top-bar-section > ul > [role="separator"] { border-right: solid 1px #3A924F;height:100%;}
 
 p.tagline {background-color:#162241; font-family:Arial; color:#ffffff; font-size:13px;}
 

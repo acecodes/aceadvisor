@@ -1,8 +1,5 @@
 /* Custom CSS */
 @font-face {
-  font-family: Money;
-  src: url("/static/fonts/Cash Currency.ttf"); }
-@font-face {
   font-family: Logo;
   src: url("/static/fonts/RockoFLF.ttf"); }
 @font-face {
@@ -12,7 +9,7 @@ body {
   font-family: Reddit, sans-serif; }
 
 h1, h2, h3 {
-  font-family: Money, serif;
+  font-family: 'Bree Serif', serif;
   clear: both;
   text-align: center; }
 
@@ -39,17 +36,18 @@ table {
   text-align: center; }
 
 .top-bar {
-  background: url(/static/img/headerbg.png);
-  background-position: 10px; }
+  background: #16721E;
+  height: 50px;
+  margin-bottom: 1em; }
   .top-bar .name {
     text-align: center;
     height: 45px;
-    margin-top: 1em;
-    font-size: 16px; }
+    margin-top: 0px;
+    font-size: 1.5em; }
   .top-bar .name h1 {
-    font-family: Money, serif;
+    font-family: 'Bree Serif', serif;
     line-height: 45px;
-    font-size: 3.2625rem;
+    font-size: 1.8em;
     margin: 0; }
 
 .top-bar#sub {
@@ -60,6 +58,23 @@ table {
   height: 40px;
   color: white;
   padding-bottom: 30px; }
+
+.top-bar-section li:not(.has-form) a:not(.button):hover {
+  background: #55B614;
+  height: 100%; }
+
+.top-bar-section li {
+  background: #16721E;
+  height: 100%; }
+
+.top-bar-section li:not(.has-form) a:not(.button) {
+  line-height: 50px;
+  background: #16721E;
+  font-family: 'Bree Serif', serif; }
+
+.top-bar-section > ul > .divider, .top-bar-section > ul > [role="separator"] {
+  border-right: solid 1px #3A924F;
+  height: 100%; }
 
 p.tagline {
   background-color: #162241;
