@@ -108,7 +108,7 @@ class OptionsScreener:
 	def calls(self, timeframe=None):
 
 		if timeframe != None:
-			self.url = 'http://finance.yahoo.com/q/op?s={symbol}&m={timeframe}'.format(symbol=self.ticker, timeframe=timeframe)	
+			self.url = 'http://finance.yahoo.com/q/op?s={symbol}&m={timeframe}'.format(symbol=self.ticker, timeframe=timeframe)
 
 		return self.table[0]
 
