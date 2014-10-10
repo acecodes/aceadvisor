@@ -57,9 +57,9 @@
 
 </div>
 
-<p class="notes"><a class="button" href="#" id="options">Options Quotes</a></p>
+<p class="notes"><a class="button" href="#" id="options" data-reveal-id="options_area">Options Quotes</a></p>
 
-<div id="options_area">
+<div id="options_area" class="reveal-modal" data-reveal>
   <div class="row">
   <div class="large-3 columns"><p></p></div>
     <div class="large-6 columns">
@@ -67,20 +67,12 @@
         <div class="small-12 columns">
 
     <div id="options_div">
+    <h2>Enter a ticker symbol:</h2>
     <form method="POST" name="symbol_form" action="{{ url_for('options') }}">
         {{ options_form.hidden_tag() }}
         {{ options_form.symbol(size=10) }}
         {{ options_form.submit(size=10) }}
     </form>
-
-{% for message in get_flashed_messages() %}
-
-<div class="alert alert-warning">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-{{ message }}
-</div>
-
-{% endfor %}
 
     </div>
         </div>
@@ -90,6 +82,7 @@
       </div>
     </div>
   <div class="large-3 columns"><p></p></div>
+  <a class="close-reveal-modal">&#215;</a>
   </div>
 </form>
 </div>

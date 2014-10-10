@@ -32,10 +32,10 @@ $( "#screener" ).click(function() {
   });
 });
 
-$( "#options" ).click(function() {
-  $( "#options_area" ).toggle( "slow", function() {
-  });
-});
+// $( "#options" ).click(function() {
+//   $( "#options_area" ).toggle( "slow", function() {
+//   });
+// });
 
 $( ".alert-box" ).click(function() {
   $( ".alert-box" ).toggle( "slow", function() {
