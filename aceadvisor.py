@@ -105,6 +105,10 @@ class OptionsScreener:
 		self.body = self.soup.get_text()
 		self.table = self.soup.find_all('table', {"class":"yfnc_datamodoutline1"})
 
+	def expiration_dates(self):
+		table = self.soup.find_all('tr', {"valign":"top"})
+		return table[0]
+
 	def calls(self, timeframe=None):
 
 		if timeframe != None:
@@ -181,7 +185,7 @@ def options():
 		symbol = None
 
 	OS = OptionsScreener(symbol)
-	return render_template('options.html', symbol=symbol, calls=OS.calls(symbol), puts=OS.puts(symbol), company_name=OS.company_name(symbol))
+	return render_template('options.html', symbol=symbol, calls=OS.calls(symbol), puts=OS.puts(symbol), company_name=OS.company_name(symbol), expiration_dates=OS.expiration_dates())
 
 @cache.cached(timeout=60)
 @app.route('/', methods=['GET', 'POST'])

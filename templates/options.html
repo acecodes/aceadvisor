@@ -2,17 +2,12 @@
 
 {% block content %}
 
-<!-- This is a test! -->
-
 <div class="row">
 {% if symbol != None %}
 <div class="large-12 columns">
 <h1 class="professional"> {{ symbol.upper() }} </h1>
 <div class="company_data"><h2>{{ company_name|safe }}<h2></div>
-<h4>Calls</h2>
-{{ calls|safe }}<br />
-<h4>Puts</h2>
-{{ puts|safe }}
+<div>{{ expiration_dates|safe }}</div>
 </div>
 
 {% else %}
@@ -24,9 +19,11 @@
 </div>
 {% endif %}
 
+<!-- This is a test! -->
 
 
 
 </div>
+
 
 {% endblock %}
