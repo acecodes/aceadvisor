@@ -1,5 +1,40 @@
 {% extends "base.html" %}
 
+{% block nav %}
+
+ <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+       
+      <li class="name">
+        <h1>
+          <a href="/">
+            {{ title }}
+          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+
+
+    <section class="top-bar-section">
+       
+      <ul class="right">
+        <li class="divider"></li>
+        <li><a href="#" id="options" data-reveal-id="options_area">Options Quotes</a></li>
+        <li class="divider"></li>
+        <li>
+          <a href="http://www.acecodes.net">Author Site</a>
+          </li>
+        <li class="divider"></li>
+        <li><a href="http://www.github.com/acecodes/aceadvisor">Github</a></li>
+      </ul>
+    </section>
+  </nav>
+
+
+
+{% endblock nav %}
+
 {% block content %}
 
 <div class="row">
@@ -57,7 +92,7 @@
 
 </div>
 
-<p class="notes"></p>
+<!-- Start options section -->
 
 <div id="options_area" class="reveal-modal" data-reveal>
   <div class="row">
@@ -67,7 +102,7 @@
         <div class="small-12 columns">
 
     <div id="options_div">
-    <h2>Enter a ticker symbol:</h2>
+    <h2 class="professional">Enter a ticker symbol:</h2>
     <form method="POST" name="symbol_form" action="{{ url_for('options') }}">
         {{ options_form.hidden_tag() }}
         {{ options_form.symbol(size=10) }}
@@ -83,9 +118,11 @@
     </div>
   <div class="large-3 columns"><p></p></div>
   <a class="close-reveal-modal">&#215;</a>
-  </div>
+</div>
 </form>
 </div>
+
+<!-- End options section -->
 
 <p class="notes"><em>Note: These views can be combined. Try clicking more than one to give it a shot!</em>
 

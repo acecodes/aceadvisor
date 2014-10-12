@@ -7,7 +7,7 @@
 <div class="row">
 {% if symbol != None %}
 <div class="large-12 columns">
-<h1> {{ symbol }} </h1>
+<h1 class="professional"> {{ symbol.upper() }} </h1>
 <div class="company_data"><h2>{{ company_name|safe }}<h2></div>
 <h4>Calls</h2>
 {{ calls|safe }}<br />
@@ -23,6 +23,9 @@
 </div>
 </div>
 {% endif %}
+
+
+
 
 </div>
 

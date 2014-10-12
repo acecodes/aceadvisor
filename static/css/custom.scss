@@ -12,6 +12,8 @@
 body { @include bodyfont;}
 h1, h2, h3 { @include moneyfont; clear:both; text-align:center;}
 
+.professional {font-family:sans-serif;}
+
 .pricing-table {
   .title {background-color: #1E7F22;}
 }
