@@ -190,7 +190,10 @@ Status = MarketStatus()
 
 @app.context_processor
 def scrapers():
-    return {'income_stocks': Income.pull_table(), 'growth_stocks': Growth.pull_table(), 'headlines': Bloomberg_News.scrape_news(), 'open_closed': Status.open_closed()}
+    return {'income_stocks': Income.pull_table(),
+            'growth_stocks': Growth.pull_table(),
+            'headlines': Bloomberg_News.scrape_news(),
+            'open_closed': Status.open_closed()}
 
 
 @app.context_processor
@@ -207,7 +210,11 @@ def options():
         symbol = None
 
     OS = OptionsScreener(symbol)
-    return render_template('options.html', symbol=symbol, calls=OS.calls(symbol), puts=OS.puts(symbol), company_name=OS.company_name(symbol), expiration_dates=OS.expiration_dates())
+    return render_template('options.html',
+                           symbol=symbol, calls=OS.calls(symbol),
+                           puts=OS.puts(symbol),
+                           company_name=OS.company_name(symbol),
+                           expiration_dates=OS.expiration_dates())
 
 
 @cache.cached(timeout=60)
@@ -217,7 +224,11 @@ def index():
     print(form.errors)
     if form.validate_on_submit():
         return redirect(url_for('options', symbol=form.symbol.data))
-    return render_template('index.html', stock_markets=BMScraper.pull_data('stock_markets'), futures=BMScraper.pull_data('futures'), currencies=BMScraper.pull_data('currencies'), options_form=form)
+    return render_template('index.html',
+                           stock_markets=BMScraper.pull_data('stock_markets'),
+                           futures=BMScraper.pull_data('futures'),
+                           currencies=BMScraper.pull_data('currencies'),
+                           options_form=form)
 
 if __name__ == '__main__':
     app.run(debug=True, port=8001)
