@@ -1,0 +1,81 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', '-g', 'cleancss' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.38
+4 verbose node symlink /usr/bin/node
+5 verbose cache add [ 'cleancss', null ]
+6 verbose cache add name=undefined spec="cleancss" args=["cleancss",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'cleancss',
+7 verbose parsed url   path: 'cleancss',
+7 verbose parsed url   href: 'cleancss' }
+8 silly lockFile 453ee660-cleancss cleancss
+9 verbose lock cleancss /home/dudebro/.npm/453ee660-cleancss.lock
+10 silly lockFile 453ee660-cleancss cleancss
+11 silly lockFile 453ee660-cleancss cleancss
+12 verbose addNamed [ 'cleancss', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile b0f8dbc3-cleancss cleancss@
+15 verbose lock cleancss@ /home/dudebro/.npm/b0f8dbc3-cleancss.lock
+16 silly addNameRange { name: 'cleancss', range: '*', hasData: false }
+17 verbose request where is /cleancss
+18 verbose request registry https://registry.npmjs.org/
+19 verbose request id 15a2d88cc70d744b
+20 verbose url raw /cleancss
+21 verbose url resolving [ 'https://registry.npmjs.org/', './cleancss' ]
+22 verbose url resolved https://registry.npmjs.org/cleancss
+23 verbose request where is https://registry.npmjs.org/cleancss
+24 info trying registry request attempt 1 at 12:58:11
+25 http GET https://registry.npmjs.org/cleancss
+26 http 404 https://registry.npmjs.org/cleancss
+27 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+27 verbose headers   'content-type': 'application/json',
+27 verbose headers   'cache-control': 'max-age=0',
+27 verbose headers   'content-length': '51',
+27 verbose headers   'accept-ranges': 'bytes',
+27 verbose headers   date: 'Tue, 26 May 2015 19:58:12 GMT',
+27 verbose headers   via: '1.1 varnish',
+27 verbose headers   age: '0',
+27 verbose headers   connection: 'keep-alive',
+27 verbose headers   'x-served-by': 'cache-lax1422-LAX',
+27 verbose headers   'x-cache': 'MISS',
+27 verbose headers   'x-cache-hits': '0',
+27 verbose headers   'x-timer': 'S1432670292.359177,VS0,VE196' }
+28 silly registry.get cb [ 404,
+28 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+28 silly registry.get     'content-type': 'application/json',
+28 silly registry.get     'cache-control': 'max-age=0',
+28 silly registry.get     'content-length': '51',
+28 silly registry.get     'accept-ranges': 'bytes',
+28 silly registry.get     date: 'Tue, 26 May 2015 19:58:12 GMT',
+28 silly registry.get     via: '1.1 varnish',
+28 silly registry.get     age: '0',
+28 silly registry.get     connection: 'keep-alive',
+28 silly registry.get     'x-served-by': 'cache-lax1422-LAX',
+28 silly registry.get     'x-cache': 'MISS',
+28 silly registry.get     'x-cache-hits': '0',
+28 silly registry.get     'x-timer': 'S1432670292.359177,VS0,VE196' } ]
+29 silly lockFile b0f8dbc3-cleancss cleancss@
+30 silly lockFile b0f8dbc3-cleancss cleancss@
+31 error 404 404 Not Found: cleancss
+31 error 404
+31 error 404 'cleancss' is not in the npm registry.
+31 error 404 You should bug the author to publish it
+31 error 404
+31 error 404 Note that you can also install from a
+31 error 404 tarball, folder, or http url, or git url.
+32 error System Linux 3.13.0-53-generic
+33 error command "/usr/bin/node" "/usr/bin/npm" "install" "-g" "cleancss"
+34 error cwd /home/dudebro/dev/projects/aceadvisor
+35 error node -v v0.10.38
+36 error npm -v 1.4.28
+37 error code E404
+38 verbose exit [ 1, true ]
